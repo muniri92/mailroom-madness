@@ -69,6 +69,7 @@ def send_report():
     """Generate report."""
     for key, value in list(donor.items()):
         print(("Name: {} | Donated: ${} | Number of Donations: {} | Average Donations: ${} ").format(key, sum(value), len(value), round((sum(value) / len(value)), 2)))
+    mailroom()
         # print(key, values)
     # print(u"report")
 
