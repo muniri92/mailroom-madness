@@ -11,6 +11,19 @@
 donor = {u"Tim": [23, 43], u"Jim": [37, 65, 23], u"Paul": [53, 234, 432]}
 
 
+SEND_REPO = u"""
+   Name: {}
+   Donated: ${}
+   Number of Donations: {}
+   Average Donations: ${}
+"""
+
+
+THANK_YOU = u""""Thank you for your generous donation, {}!\n"""
+
+# ***********************************************************************
+
+
 def mailroom():
     """Ask user to choose an option: Send Letter or Create Report."""
     start_input = u"""Hello! Press 'Q' to quit.
@@ -65,7 +78,7 @@ def select_donor(name_or_list):
 
 def thank_you(name_or_list):
     """Create an email to the donor, thanking them."""
-    print((u"Thank you for your generous donation, {}!\n").format(name_or_list))
+    print(THANK_YOU.format(name_or_list))
     mailroom()
 
 
@@ -75,7 +88,7 @@ def send_report():
         sum_val = sum(value)
         len_val = len(value)
         avg_donation = sum_val / len_val
-        print((u"Name: {} | Donated: ${} | Number of Donations: {} | Average Donations ${} ").format(key, sum_val, len_val, round(avg_donation, 2)))
+        print(SEND_REPO.format(key, sum_val, len_val, round(avg_donation, 2)))
     mailroom()
     # print(key, values)
     # print(u"report")
