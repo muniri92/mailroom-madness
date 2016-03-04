@@ -1,27 +1,31 @@
 # _*_ coding: utf-8 _*_
 
+# import sys
+
 # try:
 # 	input = raw_input
 # except NameError:
 # 	pass
 
 
-donor = {"Tim": [23, 43], "Jim": [37, 65, 23], "Paul": [53, 234, 432]}
+donor = {u"Tim": [23, 43], u"Jim": [37, 65, 23], u"Paul": [53, 234, 432]}
 
 
 def mailroom():
     """Ask user to choose an option: Send Letter or Create Report."""
-    start_input = """Hello! Press 'Q' to quit.
+    start_input = u"""Hello! Press 'Q' to quit.
 Would you like to Send a Thank You(1), or Create a Report(2)?\n
     """
     start = input(start_input)
-    while start not in ("1", "2"):
+    while start not in (u"1", u"2"):
         start = input(start_input)
         continue
-    if start == "1":
+    if start == u"1":
         send_letter()
+        return start
     else:
         send_report()
+        return start
 
 
 def send_letter():
@@ -30,8 +34,8 @@ def send_letter():
 or would you like a list(enter 'list')?\n
     """
     name_or_list = input(thanks_input)
-    if name_or_list == "list":
-        print("Here are the donors in the list: \n")
+    if name_or_list == u"list":
+        print(u"Here are the donors in the list: \n")
         for name in list(donor.keys()):
             print(name)
         send_letter()
@@ -61,18 +65,25 @@ def select_donor(name_or_list):
 
 def thank_you(name_or_list):
     """Create an email to the donor, thanking them."""
-    print(("Thank you for your generous donation, {}!\n").format(name_or_list))
+    print((u"Thank you for your generous donation, {}!\n").format(name_or_list))
     mailroom()
 
 
 def send_report():
     """Generate report."""
     for key, value in list(donor.items()):
-        print(("Name: {} | Donated: ${} | Number of Donations: {} | Average Donations: ${} ").format(key, sum(value), len(value), round((sum(value) / len(value)), 2)))
+        sum_val = sum(value)
+        len_val = len(value)
+        avg_donation = sum_val / len_val
+        print((u"Name: {} | Donated: ${} | Number of Donations: {} | Average Donations ${} ").format(key, sum_val, len_val, round(avg_donation, 2)))
     mailroom()
     # print(key, values)
     # print(u"report")
 
 
-mailroom()
+# mailroom()
 # thank_you()
+
+if __name__ == '__main__':
+    while True:
+        mailroom()
