@@ -48,7 +48,9 @@ def send_letter():
 or would you like a list(enter 'list')?\n
     """
     name_or_list = input(thanks_input).lower()
-    if name_or_list == u"list":
+    if name_or_list == u"q":
+        mailroom()
+    elif name_or_list == u"list":
         print(u"Here are the donors in the list: \n")
         for name in list(donor.keys()):
             print(name)
@@ -59,27 +61,27 @@ or would you like a list(enter 'list')?\n
         select_donor(name_or_list)
 
 
-def add_donor(name_or_list):
+def add_donor(add_name):
     """Add donor name to dict."""
-    donor.update({name_or_list: []})
-    select_donor(name_or_list)
+    donor.update({add_name: []})
+    select_donor(add_name)
 
 
-def select_donor(name_or_list):
+def select_donor(call_list):
     """Ask user how much donor gave, check for int, add amount to dict."""
     try:
         amount = int(input("""How much did they give?\n
     """))
-        donor.setdefault(name_or_list, []).append(amount)
+        donor.setdefault(call_list, []).append(amount)
         print(donor)
-        thank_you(name_or_list)
+        thank_you(call_list)
     except ValueError:
-        select_donor(name_or_list)
+        select_donor(call_list)
 
 
-def thank_you(name_or_list):
+def thank_you(thank_donor):
     """Create an email to the donor, thanking them."""
-    print(THANK_YOU.format(name_or_list))
+    print(THANK_YOU.format(thank_donor))
 
 
 def send_report(donor):
