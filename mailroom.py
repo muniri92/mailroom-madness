@@ -92,12 +92,7 @@ def send_report(donor):
         results += SEND_REPO.format(key, sum_val, len_val, round(avg_donation, 2))
     print(results)
     return results
-    # print(key, values)
-    # print(u"report")
 
-
-# mailroom()
-# thank_you()
 
 if __name__ == '__main__':
     while True:
