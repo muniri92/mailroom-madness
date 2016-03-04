@@ -6,7 +6,7 @@
 # 	pass
 
 
-donor = {"Tim": "200", "Jim": "10.90", "Paul": ""}
+donor = {"Tim": [23, 43], "Jim": [37, 65, 23], "Paul": [53, 234, 432]}
 
 
 def mailroom():
@@ -30,7 +30,6 @@ def send_letter():
 or would you like a list(enter 'list')?\n
     """
     name_or_list = input(thanks_input)
-
     if name_or_list == "list":
         print("Here are the donors in the list: \n")
         for name in list(donor.keys()):
@@ -44,7 +43,7 @@ or would you like a list(enter 'list')?\n
 
 def add_donor(name_or_list):
     """Add donor name to dict."""
-    donor.update({name_or_list: ""})
+    donor.update({name_or_list: []})
     select_donor(name_or_list)
 
 
@@ -53,7 +52,8 @@ def select_donor(name_or_list):
     try:
         amount = int(input("""How much did they give?\n
     """))
-        donor[name_or_list] = amount
+        donor.setdefault(name_or_list, []).append(amount)
+        print(donor)
         thank_you(name_or_list)
     except ValueError:
         select_donor(name_or_list)
@@ -66,7 +66,10 @@ def thank_you(name_or_list):
 
 def send_report():
     """Generate report."""
-    print(u"report")
+    for key, value in list(donor.items()):
+        print(("Name: {} | Donated: ${} | Number of Donations: {} | Average Donations: ${} ").format(key, sum(value), len(value), round((sum(value) / len(value)), 2)))
+        # print(key, values)
+    # print(u"report")
 
 
 mailroom()
