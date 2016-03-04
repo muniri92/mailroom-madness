@@ -1,30 +1,24 @@
 # _*_ coding: utf-8 _*_
+"""Test mailroom.py."""
 import pytest
 
 
-SAMPLE_DONOR = {u"Tim": [23, 43]}
-# SAMPLE_REPORT =
+TEST_REPO = u"""
+   Name: Paul
+   Donated: $719
+   Number of Donations: 3
+   Average Donations: $239.67
+"""
 
 
-# @pytest.mark.parametrize("1", "2")
-# def test_mailroom():
-#     from mailroom import mailroom
-#     assert results == True
+EXAMPLE_REPORT = [({'Paul': [53, 234, 432]}, TEST_REPO)]
 
 
-# @pytest.mark.parametrize()
-# def test_send_letter():
-#     from mailroom import send_letter
-#     assert [[blank]] == result
+# ***********************************************************************
 
 
-# @pytest.mark.parametrize()
-# def test_add_donor():
-#     from mailroom import add_donor
-#     assert 1 == result
-
-
-@pytest.mark.parametrize("dict, result", SAMPLE_DONOR)
-def test_send_report(dict, result):
+@pytest.mark.parametrize('donor, results', EXAMPLE_REPORT)
+def test_send_report(donor, results):
+    """Run working test."""
     from mailroom import send_report
-    assert result == result
+    assert send_report(donor) == results

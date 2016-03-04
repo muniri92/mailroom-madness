@@ -1,6 +1,5 @@
 # _*_ coding: utf-8 _*_
-
-# import sys
+import sys
 
 # try:
 # 	input = raw_input
@@ -8,7 +7,7 @@
 # 	pass
 
 
-donor = {u"Tim": [23, 43], u"Jim": [37, 65, 23], u"Paul": [53, 234, 432]}
+donor = {u"tim": [23, 43], u"jim": [37, 65, 23], u"paul": [53, 234, 432]}
 
 
 SEND_REPO = u"""
@@ -29,16 +28,18 @@ def mailroom():
     start_input = u"""Hello! Press 'Q' to quit.
 Would you like to Send a Thank You(1), or Create a Report(2)?\n
     """
-    start = input(start_input)
-    while start not in (u"1", u"2"):
+    start = input(start_input).lower()
+    while start not in (u"1", u"2", u"q"):
         start = input(start_input)
         continue
     if start == u"1":
         send_letter()
         return start
-    else:
-        send_report()
+    elif start == u"2":
+        send_report(donor)
         return start
+    else:
+        sys.exit(0)
 
 
 def send_letter():
@@ -46,7 +47,7 @@ def send_letter():
     thanks_input = """Please give the full name of the thankee(enter name),
 or would you like a list(enter 'list')?\n
     """
-    name_or_list = input(thanks_input)
+    name_or_list = input(thanks_input).lower()
     if name_or_list == u"list":
         print(u"Here are the donors in the list: \n")
         for name in list(donor.keys()):
@@ -79,17 +80,18 @@ def select_donor(name_or_list):
 def thank_you(name_or_list):
     """Create an email to the donor, thanking them."""
     print(THANK_YOU.format(name_or_list))
-    mailroom()
 
 
-def send_report():
+def send_report(donor):
     """Generate report."""
+    results = ""
     for key, value in list(donor.items()):
         sum_val = sum(value)
         len_val = len(value)
         avg_donation = sum_val / len_val
-        print(SEND_REPO.format(key, sum_val, len_val, round(avg_donation, 2)))
-    mailroom()
+        results += SEND_REPO.format(key, sum_val, len_val, round(avg_donation, 2))
+    print(results)
+    return results
     # print(key, values)
     # print(u"report")
 
