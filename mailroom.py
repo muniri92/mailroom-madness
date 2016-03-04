@@ -60,8 +60,8 @@ def select_donor(name_or_list):
 
 
 def thank_you(name_or_list):
-    """Send an email to the donor, thanking them."""
-    print(("Thank you for you generous donation, {}!\n").format(name_or_list))
+    """Create an email to the donor, thanking them."""
+    print(("Thank you for your generous donation, {}!\n").format(name_or_list))
     mailroom()
 
 
@@ -70,7 +70,7 @@ def send_report():
     for key, value in list(donor.items()):
         print(("Name: {} | Donated: ${} | Number of Donations: {} | Average Donations: ${} ").format(key, sum(value), len(value), round((sum(value) / len(value)), 2)))
     mailroom()
-        # print(key, values)
+    # print(key, values)
     # print(u"report")
 
 
