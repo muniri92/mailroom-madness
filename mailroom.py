@@ -62,6 +62,7 @@ def select_donor(name_or_list):
 def thank_you(name_or_list):
     """Send an email to the donor, thanking them."""
     print(("Thank you for you generous donation, {}!\n").format(name_or_list))
+    mailroom()
 
 
 def send_report():
