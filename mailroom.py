@@ -24,7 +24,15 @@ def mailroom():
 
 
 def thank_you():
-    print(u"thanks")
+    thanks_input = """Please give the full name of the thankee(1),
+                     or would you like a list(2)?"""
+    name_or_list = input(thanks_input)
+    if name_or_list == "2":
+        for name in list(donor.keys()):
+            print(name)
+        thank_you()
+
+    # print(u"thanks")
 
 
 def send_report():
