@@ -10,8 +10,7 @@ TEST_REPO = u"""
    Average Donations: $239.67
 """
 
-TEST_NAME = u"Paul"
-
+TEST_NAME = [(u"Bob", u"Bob")]
 
 EXAMPLE_REPORT = [({'Paul': [53, 234, 432]}, TEST_REPO)]
 EXAMPLE_THANK_YOU = [(u"Paul", u"Thank you for your generous donation, Paul!")]
@@ -32,3 +31,10 @@ def test_thank_you(donor, thanks):
     """Run working test."""
     from mailroom import thank_you
     assert thank_you(donor) == thanks
+
+
+@pytest.mark.parametrize('donor, names', TEST_NAME)
+def test_add_donor(donor, names):
+    """Run working test."""
+    from mailroom import add_donor
+    assert add_donor(donor) == names

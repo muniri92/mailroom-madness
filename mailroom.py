@@ -57,16 +57,18 @@ or would you like a list(enter 'list')?\n
         for name in list(donor.keys()):
             print(name)
         send_letter()
-    elif name_or_list not in list(donor.keys()):
+    while name_or_list not in list(donor.keys()):
         add_donor(name_or_list)
-    else:
         select_donor(name_or_list)
+        break
+    select_donor(name_or_list)
 
 
 def add_donor(add_name):
     """Add donor name to dict."""
     donor.update({add_name: []})
-    select_donor(add_name)
+    if add_name in donor:
+        return add_name
 
 
 def select_donor(call_list):
@@ -75,7 +77,6 @@ def select_donor(call_list):
         amount = int(input("""How much did they give?\n
     """))
         donor.setdefault(call_list, []).append(amount)
-        print(donor)
         thank_you(call_list)
     except ValueError:
         select_donor(call_list)
