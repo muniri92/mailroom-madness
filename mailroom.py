@@ -18,7 +18,7 @@ SEND_REPO = u"""
 """
 
 
-THANK_YOU = u""""Thank you for your generous donation, {}!\n"""
+THANK_YOU = u"""Thank you for your generous donation, {}!"""
 
 # ***********************************************************************
 
@@ -81,7 +81,9 @@ def select_donor(call_list):
 
 def thank_you(thank_donor):
     """Create an email to the donor, thanking them."""
-    print(THANK_YOU.format(thank_donor))
+    thanks = THANK_YOU.format(thank_donor)
+    print(thanks)
+    return thanks
 
 
 def send_report(donor):
