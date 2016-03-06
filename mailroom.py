@@ -9,7 +9,7 @@ import sys
 # 	pass
 
 
-donor = {u"tim": [23, 43], u"jim": [37, 65, 23], u"paul": [53, 234, 432]}
+donor = {u"tim": [23, 43], u"jim": [37, 65, 23], u"paul": [53]}
 
 
 SEND_REPO = u"""
@@ -95,8 +95,8 @@ def send_report(donor):
     for key, value in list(donor.items()):
         sum_val = sum(value)
         len_val = len(value)
-        avg_donation = sum_val / len_val
-        results += SEND_REPO.format(key, sum_val, len_val, round(avg_donation, 2))
+        avg_donation = format((sum_val / len_val), '.2f')
+        results += SEND_REPO.format(key, sum_val, len_val, avg_donation)
     print(results)
     return results
 

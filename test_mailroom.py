@@ -5,14 +5,14 @@ import pytest
 
 TEST_REPO = u"""
    Name: Paul
-   Donated: $719
-   Number of Donations: 3
-   Average Donations: $239.67
+   Donated: $53
+   Number of Donations: 1
+   Average Donations: $53.00
 """
 
 TEST_NAME = [(u"Bob", u"Bob")]
 
-EXAMPLE_REPORT = [({'Paul': [53, 234, 432]}, TEST_REPO)]
+EXAMPLE_REPORT = [({'Paul': [53]}, TEST_REPO)]
 EXAMPLE_THANK_YOU = [(u"Paul", u"Thank you for your generous donation, Paul!")]
 
 
