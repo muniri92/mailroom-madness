@@ -4,7 +4,7 @@ import pytest
 
 
 TEST_REPO = u"""
-   Name: Paul
+   Name: PAUL
    Donated: $53
    Number of Donations: 1
    Average Donations: $53.00

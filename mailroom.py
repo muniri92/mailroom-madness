@@ -52,16 +52,17 @@ or would you like a list(enter 'list')?\n
     name_or_list = input(thanks_input).lower()
     if name_or_list == u"q":
         mailroom()
-    elif name_or_list == u"list":
+    while name_or_list == u"list":
         print(u"Here are the donors in the list: \n")
         for name in list(donor.keys()):
-            print(name)
+            print(name.upper())
         send_letter()
+        break
     while name_or_list not in list(donor.keys()):
         add_donor(name_or_list)
         select_donor(name_or_list)
         break
-    select_donor(name_or_list)
+    # select_donor(name_or_list)
 
 
 def add_donor(add_name):
@@ -91,14 +92,14 @@ def thank_you(thank_donor):
 
 def send_report(donor):
     """Generate report."""
-    results = ""
+    result = ""
     for key, value in list(donor.items()):
         sum_val = sum(value)
         len_val = len(value)
         avg_donation = format((sum_val / len_val), '.2f')
-        results += SEND_REPO.format(key, sum_val, len_val, avg_donation)
-    print(results)
-    return results
+        result += SEND_REPO.format(key.upper(), sum_val, len_val, avg_donation)
+    print(result)
+    return result
 
 
 if __name__ == '__main__':
