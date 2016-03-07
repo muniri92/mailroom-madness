@@ -1,14 +1,6 @@
 # _*_ coding: utf-8 _*_
 """Mailroom app."""
-
 import sys
-
-# try:
-# 	input = raw_input
-# except NameError:
-# 	pass
-
-
 donor = {u"tim": [23, 43], u"jim": [37, 65, 23], u"paul": [53]}
 
 
