@@ -38,3 +38,11 @@ def test_add_donor(donor, names):
     """Run working test."""
     from mailroom import add_donor
     assert add_donor(donor) == names
+
+
+# @pytest.mark.parametrize()
+def test_select_error():
+    """Test to confirm that ValueError is detected."""
+    from mailroom import select_donor
+    with pytest.raises(ValueError):
+        select_donor(45)

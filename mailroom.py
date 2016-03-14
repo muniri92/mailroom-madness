@@ -12,7 +12,7 @@ SEND_REPO = u"""
 """
 
 
-THANK_YOU = u"""Thank you for your generous donation, {}!"""
+THANK_YOU = u"""Thank you for your generous donation, {}! \n"""
 
 # ***********************************************************************
 
@@ -38,46 +38,48 @@ Would you like to Send a Thank You(1), or Create a Report(2)?\n
 
 def send_letter():
     """Ask user to choose option: enter name or get list of names."""
-    thanks_input = """Please give the full name of the thankee(enter name),
+    thanks = """Please give the full name of the thankee(enter name),
 or would you like a list(enter 'list')?\n
     """
-    name_or_list = input(thanks_input).lower()
-    if name_or_list == u"q":
-        mailroom()
-    while name_or_list == u"list":
-        print(u"Here are the donors in the list: \n")
-        for name in list(donor.keys()):
-            print(name.upper())
-        send_letter()
-        break
-    while name_or_list not in list(donor.keys()):
-        add_donor(name_or_list)
+    while True:
+        name_or_list = input(thanks).lower()
+        if name_or_list == u"q":
+            mailroom()
+            break
+        elif name_or_list == u"list":
+            print(u"Here are the donors in the list: \n")
+            for name in list(donor.keys()):
+                print(name.upper())
+                continue
+        elif name_or_list not in list(donor.keys()):
+            add_donor(name_or_list)
+            select_donor(name_or_list)
+            break
         select_donor(name_or_list)
         break
-    # select_donor(name_or_list)
 
 
 def add_donor(add_name):
-    """Add donor name to dict."""
+    """Add donor name to dictionary."""
     donor.update({add_name: []})
     if add_name in donor:
         return add_name
 
 
-def select_donor(call_list):
+def select_donor(add_name):
     """Ask user how much donor gave, check for int, add amount to dict."""
     try:
-        amount = int(input("""How much did they give?\n
-    """))
-        donor.setdefault(call_list, []).append(amount)
-        thank_you(call_list)
+        amount = int(input("How much did they give?\n"))
+        donor.setdefault(add_name, []).append(amount)
+        thank_you(add_name)
+        return amount
     except ValueError:
-        select_donor(call_list)
+        select_donor(add_name)
 
 
-def thank_you(thank_donor):
+def thank_you(donor):
     """Create an email to the donor, thanking them."""
-    thanks = THANK_YOU.format(thank_donor)
+    thanks = THANK_YOU.format(donor)
     print(thanks)
     return thanks
 
