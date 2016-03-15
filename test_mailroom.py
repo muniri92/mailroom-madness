@@ -1,7 +1,8 @@
 # _*_ coding: utf-8 _*_
-"""Test mailroom.py."""
+"""Test mailroom_redo.py."""
 import pytest
 
+TEST_REPLY = [(u"1", u"1"), (u"2", u"2")]
 
 TEST_REPO = u"""
    Name: PAUL
@@ -13,8 +14,8 @@ TEST_REPO = u"""
 TEST_NAME = [(u"Bob", u"Bob")]
 
 EXAMPLE_REPORT = [({'Paul': [53]}, TEST_REPO)]
-EXAMPLE_THANK_YOU = [(u"Paul", u"Thank you for your generous donation, Paul!")]
 
+EXAMPLE_THANK_YOU = [(u"Paul", u"Thank you for your generous donation, Paul! \n")]
 
 # ***********************************************************************
 
@@ -38,11 +39,3 @@ def test_add_donor(donor, names):
     """Run working test."""
     from mailroom import add_donor
     assert add_donor(donor) == names
-
-
-# @pytest.mark.parametrize()
-def test_select_error():
-    """Test to confirm that ValueError is detected."""
-    from mailroom import select_donor
-    with pytest.raises(ValueError):
-        select_donor(45)

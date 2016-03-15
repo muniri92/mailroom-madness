@@ -1,8 +1,8 @@
 # _*_ coding: utf-8 _*_
 """Mailroom app."""
 import sys
+# Example dictiontary of names to start.
 donor = {u"tim": [23, 43], u"jim": [37, 65, 23], u"paul": [53]}
-
 
 SEND_REPO = u"""
    Name: {}
@@ -10,7 +10,6 @@ SEND_REPO = u"""
    Number of Donations: {}
    Average Donations: ${}
 """
-
 
 THANK_YOU = u"""Thank you for your generous donation, {}! \n"""
 
@@ -23,7 +22,7 @@ def mailroom():
 Would you like to Send a Thank You(1), or Create a Report(2)?\n
     """
     start = input(start_input).lower()
-    while start not in (u"1", u"2", u"q"):
+    while start not in [u"1", u"2", u"q"]:
         start = input(start_input)
         continue
     if start == u"1":
